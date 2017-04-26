@@ -1,9 +1,14 @@
 package common;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeMap;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 
 /**
@@ -111,14 +116,55 @@ public class Movie implements Comparable {
         myMap.put("1122", m3);
         myMap.put("0731", m4);
         
-        Movie m = myMap.get("0731");
-        System.out.println("Getting movie information with movie id of 0731: " + m);
+//        Movie m = myMap.get("0731");
+//        System.out.println("Getting movie information with movie id of 0731: " + m);
+//        
+//        Set<String> keys = myMap.keySet();
+//        for(String key : keys) {
+//            Movie found = myMap.get(key);
+//            System.out.println(found.toString());
+//        }
+
+//        Collection <Movie> movCol = myMap.values();
+//        for(Movie movObj : movCol){
+//            Movie x = movObj;
+//            System.out.println(x);
+//        }
         
-        Collection <Movie> movCol = myMap.values();
-        for(Movie movObj : movCol){
-            Movie x = movObj;
-            System.out.println(x);
+        Map <String, Movie> myMap2 = new TreeMap<String, Movie>(myMap);
+        myMap2.put("1122", m1);
+        myMap2.put("3344", m2);
+        myMap2.put("1122", m3);
+        myMap2.put("0731", m4);
+           
+        Set<String> keys2 = myMap2.keySet();
+        for(String key2 : keys2) {
+            Movie found = myMap2.get(key2);
+            System.out.println(found.toString());
         }
+
+        Collection<Movie> values = myMap2.values();
+        List<Movie> sortedList = new ArrayList<Movie>(values);
+        Collections.sort(sortedList);
+        for(Movie sort1 : sortedList) {
+            System.out.println(sort1);
+        }
+        
+        Collection<Movie> values2 = myMap2.values();
+        List<Movie> sortedList2 = new ArrayList<>(values2);
+        Collections.sort(sortedList2, new MovieByTitle());
+        for(Movie sort2 : sortedList2) {
+            System.out.println("Sorted List By Title: " + sort2);
+        }
+
+        Collection<Movie> values3 = myMap2.values();
+        List<Movie> sortedList3 = new ArrayList<>(values3);
+        Collections.sort(sortedList3, new MovieByDirector());
+        for(Movie sort3 : sortedList3) {
+            System.out.println("Sorted List By Director: " + sort3);
+        }
+
+
     }
     
     
